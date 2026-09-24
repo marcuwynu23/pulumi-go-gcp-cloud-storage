@@ -29,6 +29,7 @@ desktop.ini
 # Pulumi
 Pulumi.yaml.state
 Pulumi.dev.yaml.state
+Pulumi.dev.yaml
 *.yaml.state
 *.yaml~
 
