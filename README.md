@@ -56,23 +56,31 @@
  ## Project Layout
 
  ```
- ├── Pulumi.yaml   Pulumi project definition and template settings
- ├── go.mod        Go module declaration and dependencies
- └── main.go       Pulumi program defining the Storage Bucket
+├── Pulumi.yaml              Pulumi project definition and template settings
+├── Pulumi.dev.yaml.example  Template for local dev configuration
+├── go.mod                   Go module declaration and dependencies
+└── main.go                  Pulumi program defining the Storage Bucket
  ```
 
- ## Configuration
+## Configuration
 
- The following Pulumi configuration values are available:
+**Important**: `Pulumi.dev.yaml` is gitignored to protect project credentials. Start with the template:
 
- | Name           | Description                             | Default    |
- | -------------- | --------------------------------------- | ---------- |
- | `gcp:project`  | The Google Cloud project to deploy into | _required_ |
+```bash
+cp Pulumi.dev.yaml.example Pulumi.dev.yaml
+```
 
- Set configuration with:
- ```bash
- pulumi config set gcp:project YOUR_PROJECT_ID
- ```
+Then fill in your `gcp:project` value and set it via:
+
+```bash
+pulumi config set gcp:project YOUR_PROJECT_ID
+```
+
+The following Pulumi configuration values are available:
+
+| Name           | Description                             | Default    |
+| -------------- | --------------------------------------- | ---------- |
+| `gcp:project`  | The Google Cloud project to deploy into | _required_ |
 
  ## Next Steps
 
