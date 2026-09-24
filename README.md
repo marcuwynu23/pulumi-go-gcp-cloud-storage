@@ -9,7 +9,7 @@
 
  ## Providers
 
- - Google Cloud Platform via the Pulumi GCP SDK for Go (`github.com/pulumi/pulumi-gcp/sdk/v8/go/gcp`)
+ - Google Cloud Platform via the Pulumi GCP SDK for Go (`github.com/pulumi/pulumi-gcp/sdk/v9/go/gcp`)
 
  ## Resources
 
@@ -29,7 +29,7 @@
 
  ## Prerequisites
 
- - Go 1.20 or later installed
+ - Go 1.26 or later installed
  - A Google Cloud account with billing enabled
  - GCP credentials configured for Pulumi (for example, via `gcloud auth application-default login`)
 
