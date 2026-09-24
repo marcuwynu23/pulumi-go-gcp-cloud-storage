@@ -9,7 +9,7 @@ It's a great starting point for learning Pulumi with Go on GCP or bootstrapping 
 
 ## Providers
 
-- Google Cloud Platform via the Pulumi GCP SDK for Go (`github.com/pulumi/pulumi-gcp/sdk/v9/go/gcp`)
+ - Google Cloud Platform via the Pulumi GCP SDK for Go (`github.com/pulumi/pulumi-gcp/sdk/v9/go/gcp`)
 
 ## Resources
 
@@ -30,9 +30,9 @@ It's a great starting point for learning Pulumi with Go on GCP or bootstrapping 
 
 ## Prerequisites
 
-- Go 1.21 or later installed
-- A Google Cloud account with billing enabled
-- GCP credentials configured for Pulumi (for example, via `gcloud auth application-default login`)
+ - Go 1.26 or later installed
+ - A Google Cloud account with billing enabled
+ - GCP credentials configured for Pulumi (for example, via `gcloud auth application-default login`)
 
 ## Usage
 
