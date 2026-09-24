@@ -67,6 +67,7 @@ It's a great starting point for learning Pulumi with Go on GCP or bootstrapping 
 
 ## Project Layout
 
+<<<<<<< HEAD
 ```
 ├── Pulumi.yaml                  Pulumi project definition and template settings
 ├── Pulumi.dev.yaml.example      Template for local dev configuration
@@ -75,6 +76,14 @@ It's a great starting point for learning Pulumi with Go on GCP or bootstrapping 
 ├── .gitignore                   Git ignore rules
 └── LICENSE                      MIT License
 ```
+=======
+ ```
+├── Pulumi.yaml              Pulumi project definition and template settings
+├── Pulumi.dev.yaml.example  Template for local dev configuration
+├── go.mod                   Go module declaration and dependencies
+└── main.go                  Pulumi program defining the Storage Bucket
+ ```
+>>>>>>> 0365c65 (Update README: add Pulumi.dev.yaml.example instructions and project layout)
 
 ## Configuration
 
@@ -85,6 +94,19 @@ cp Pulumi.dev.yaml.example Pulumi.dev.yaml
 ```
 
 Then fill in your `gcp:project` value and set it via:
+<<<<<<< HEAD
+=======
+
+```bash
+pulumi config set gcp:project YOUR_PROJECT_ID
+```
+
+The following Pulumi configuration values are available:
+
+| Name           | Description                             | Default    |
+| -------------- | --------------------------------------- | ---------- |
+| `gcp:project`  | The Google Cloud project to deploy into | _required_ |
+>>>>>>> 0365c65 (Update README: add Pulumi.dev.yaml.example instructions and project layout)
 
 ```bash
 pulumi config set gcp:project YOUR_PROJECT_ID
