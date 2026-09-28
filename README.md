@@ -1,6 +1,6 @@
-# Pulumi GCP Go: Configurable Storage Bucket Template
+# Pulumi GCP Go: Cloud Storage
 
-This template provisions a Google Cloud Storage bucket using Pulumi and Go. It demonstrates how to:
+This project provisions a Google Cloud Storage bucket using Pulumi and Go. It demonstrates how to:
 - Use the Pulumi GCP provider in a Go program
 - Create a simple GCP resource (a Storage Bucket) with configurable settings
 - Export resource outputs for use in your stacks
@@ -9,7 +9,7 @@ It's a great starting point for learning Pulumi with Go on GCP or bootstrapping 
 
 ## Providers
 
- - Google Cloud Platform via the Pulumi GCP SDK for Go (`github.com/pulumi/pulumi-gcp/sdk/v9/go/gcp`)
+- Google Cloud Platform via the Pulumi GCP SDK for Go (`github.com/pulumi/pulumi-gcp/sdk/v9/go/gcp`)
 
 ## Resources
 
@@ -22,7 +22,7 @@ It's a great starting point for learning Pulumi with Go on GCP or bootstrapping 
 - **bucketName**: The URL of the newly created bucket (e.g., `https://storage.googleapis.com/my-bucket`)
 - **bucketSelfLink**: The self link of the bucket resource
 
-## When to Use This Template
+## When to Use This Project
 
 - You want a minimal Pulumi program in Go targeting GCP
 - You need a simple object storage bucket for assets or data
@@ -30,25 +30,18 @@ It's a great starting point for learning Pulumi with Go on GCP or bootstrapping 
 
 ## Prerequisites
 
- - Go 1.26 or later installed
- - A Google Cloud account with billing enabled
- - GCP credentials configured for Pulumi (for example, via `gcloud auth application-default login`)
+- Go 1.21+ installed
+- A Google Cloud account with billing enabled
+- GCP credentials configured for Pulumi (for example, via `gcloud auth application-default login`)
 
 ## Usage
 
-1. Scaffold a new project from this template:
+1. Install dependencies:
    ```bash
-   pulumi new gcp-go
+   go mod tidy
    ```
-2. When prompted, fill in:
-   - **Project name**: your desired project identifier
-   - **Description**: a short description of your stack
-   - **gcp:project**: your target GCP project ID
-3. Change into your project directory:
-   ```bash
-   cd <your-project-name>
-   ```
-4. Configure your bucket settings:
+
+2. Configure your stack:
    ```bash
    cp Pulumi.dev.yaml.example Pulumi.dev.yaml
    # Edit Pulumi.dev.yaml with your settings
@@ -59,7 +52,8 @@ It's a great starting point for learning Pulumi with Go on GCP or bootstrapping 
    pulumi config set storage:versioning true
    pulumi config set storage:uniformBucketLevelAccess true
    ```
-5. Preview and deploy your stack:
+
+3. Preview and deploy your stack:
    ```bash
    pulumi preview
    pulumi up
@@ -67,7 +61,6 @@ It's a great starting point for learning Pulumi with Go on GCP or bootstrapping 
 
 ## Project Layout
 
-<<<<<<< HEAD
 ```
 ├── Pulumi.yaml                  Pulumi project definition and template settings
 ├── Pulumi.dev.yaml.example      Template for local dev configuration
@@ -76,14 +69,6 @@ It's a great starting point for learning Pulumi with Go on GCP or bootstrapping 
 ├── .gitignore                   Git ignore rules
 └── LICENSE                      MIT License
 ```
-=======
- ```
-├── Pulumi.yaml              Pulumi project definition and template settings
-├── Pulumi.dev.yaml.example  Template for local dev configuration
-├── go.mod                   Go module declaration and dependencies
-└── main.go                  Pulumi program defining the Storage Bucket
- ```
->>>>>>> 0365c65 (Update README: add Pulumi.dev.yaml.example instructions and project layout)
 
 ## Configuration
 
@@ -94,19 +79,6 @@ cp Pulumi.dev.yaml.example Pulumi.dev.yaml
 ```
 
 Then fill in your `gcp:project` value and set it via:
-<<<<<<< HEAD
-=======
-
-```bash
-pulumi config set gcp:project YOUR_PROJECT_ID
-```
-
-The following Pulumi configuration values are available:
-
-| Name           | Description                             | Default    |
-| -------------- | --------------------------------------- | ---------- |
-| `gcp:project`  | The Google Cloud project to deploy into | _required_ |
->>>>>>> 0365c65 (Update README: add Pulumi.dev.yaml.example instructions and project layout)
 
 ```bash
 pulumi config set gcp:project YOUR_PROJECT_ID
