@@ -1,12 +1,9 @@
 encryptionsalt: v1:REPLACE_ME:=v1:REPLACE_ME:REPLACE_ME
 config:
   gcp:project: YOUR_GCP_PROJECT_ID
-<<<<<<< HEAD
   gcp:region: US
   storage:bucketName: my-pulumi-bucket
   storage:location: US
   storage:storageClass: STANDARD
   storage:versioning: "true"
   storage:uniformBucketLevelAccess: "true"
-=======
->>>>>>> 386dbb1 (Add Pulumi.dev.yaml.example template for new contributors)
