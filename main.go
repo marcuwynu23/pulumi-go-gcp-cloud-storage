@@ -8,34 +8,33 @@ import (
 
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
-		cfg := config.New(ctx, "")
 
 		// Get configuration values
-		bucketName := cfg.Get("storage:bucketName")
+		bucketName := config.Get(ctx, "storage:bucketName")
 		if bucketName == "" {
 			bucketName = "my-pulumi-bucket"
 		}
 
-		location := cfg.Get("storage:location")
+		location := config.Get(ctx, "storage:location")
 		if location == "" {
 			location = "US"
 		}
 
-		storageClass := cfg.Get("storage:storageClass")
+		storageClass := config.Get(ctx, "storage:storageClass")
 		if storageClass == "" {
 			storageClass = "STANDARD"
 		}
 
-		versioning := cfg.GetBool("storage:versioning")
-		uniformBucketLevelAccess := cfg.GetBool("storage:uniformBucketLevelAccess")
+		versioning := config.GetBool(ctx, "storage:versioning")
+		uniformBucketLevelAccess := config.GetBool(ctx, "storage:uniformBucketLevelAccess")
 
 		// Create a GCP resource (Storage Bucket)
 		bucket, err := storage.NewBucket(ctx, "my-bucket", &storage.BucketArgs{
-			Name:                       pulumi.String(bucketName),
-			Location:                   pulumi.String(location),
-			StorageClass:               pulumi.String(storageClass),
-			Versioning:                 &storage.BucketVersioningArgs{Enabled: pulumi.Bool(versioning)},
-			UniformBucketLevelAccess:   pulumi.Bool(uniformBucketLevelAccess),
+			Name:                     pulumi.String(bucketName),
+			Location:                 pulumi.String(location),
+			StorageClass:             pulumi.String(storageClass),
+			Versioning:               &storage.BucketVersioningArgs{Enabled: pulumi.Bool(versioning)},
+			UniformBucketLevelAccess: pulumi.Bool(uniformBucketLevelAccess),
 		})
 		if err != nil {
 			return err
