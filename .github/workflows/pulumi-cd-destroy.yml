@@ -1,0 +1,99 @@
+name: CD - Pulumi GCP Cloud Storage (Destroy)
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_id:
+        description: GCP project ID
+        required: true
+        type: string
+      region:
+        description: "GCP region"
+        required: true
+        type: string
+        default: US
+      bucket_name:
+        description: Storage bucket name
+        required: true
+        type: string
+        default: my-pulumi-bucket
+      location:
+        description: Bucket location
+        required: true
+        type: string
+        default: US
+      storage_class:
+        description: Storage class
+        required: true
+        type: string
+        default: STANDARD
+      versioning:
+        description: Enable versioning
+        required: true
+        type: string
+        default: "true"
+      uniform_bucket_level_access:
+        description: Enable uniform bucket level access
+        required: true
+        type: string
+        default: "true"
+
+env:
+  PULUMI_STACK: cloud-storage-${{ github.event.inputs.region | lower }}
+  PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
+  GCP_PROJECT: ${{ github.event.inputs.project_id }}
+  GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+jobs:
+  destroy:
+    name: Pulumi Destroy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.26'
+
+      - name: Setup Pulumi
+        uses: pulumi/actions@v5
+        with:
+          command: version
+
+      - name: Configure Pulumi Stack
+        run: |
+          pulumi stack select ${{ env.PULUMI_STACK }} 2>/dev/null || echo "Stack not found"
+
+      - name: Set Pulumi Config
+        run: |
+          pulumi config set gcp:project ${{ github.event.inputs.project_id }}
+          pulumi config set gcp:region ${{ github.event.inputs.region }}
+          pulumi config set storage:bucketName ${{ github.event.inputs.bucket_name }}
+          pulumi config set storage:location ${{ github.event.inputs.location }}
+          pulumi config set storage:storageClass ${{ github.event.inputs.storage_class }}
+          pulumi config set storage:versioning ${{ github.event.inputs.versioning }}
+          pulumi config set storage:uniformBucketLevelAccess ${{ github.event.inputs.uniform_bucket_level_access }}
+
+      - name: Download Go Dependencies
+        run: go mod download
+
+      - name: Go Build
+        run: go build -v .
+
+      - name: Pulumi Preview (Destroy)
+        uses: pulumi/actions@v5
+        with:
+          command: preview
+          stack-name: ${{ env.PULUMI_STACK }}
+          work-dir: .
+          args: --destroy
+
+      - name: Pulumi Destroy
+        uses: pulumi/actions@v5
+        with:
+          command: destroy
+          stack-name: ${{ env.PULUMI_STACK }}
+          work-dir: .
+          args: --yes
